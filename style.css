@@ -61,6 +61,7 @@ main {
 #players {
     background: #202020;
     margin: 5px 15px 0;
+    border-radius: 10px;
 }
 #playersContainer {
     display: flex;

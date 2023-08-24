@@ -10,14 +10,22 @@ const yourRoleShow = document.querySelector("#yourRoleShow");
 let everyPlayers;
 
 everyPlayers = decodeURIComponent(getCookie("players")).split(',');
-console.log(everyPlayers);
-console.log(typeof(everyPlayers));
+let playersRole = JSON.parse(decodeURIComponent(getCookie("role")))
 
-for (var i = 0; i < everyPlayers.length; i++){
-    clickAddPlayerBTN().value = everyPlayers[i];
-    var roleLi = document.createElement("li");
-    roleLi.textContent = everyPlayers[i];
-    roleUl.appendChild(roleLi);
+console.log(everyPlayers)
+console.log(playersRole)
+
+if (everyPlayers){
+    for (var i = 0; i < everyPlayers.length; i++) {
+        clickAddPlayerBTN().value = everyPlayers[i];
+        var roleLi = document.createElement("li");
+        roleLi.textContent = everyPlayers[i];
+        roleUl.appendChild(roleLi);
+    }
+
+    if (playersRole){
+        setupRole()
+    }
 }
 
 // changing of players
@@ -48,7 +56,7 @@ function clickSetPlayersBTN() {
 
         } else {
             inputs[i].parentNode.removeChild(inputs[i]);
-            i--; // Snížíme index, abychom nepřeskočili následující prvek.
+            i--;
         }
     }
 
@@ -58,21 +66,15 @@ function clickSetPlayersBTN() {
     players.style.display = "none";
     yourRole.style.display = "none";
 
-    // alert("Seznam jmen: " + values.join(", "));
-    setCookie("players", values, 3);
+    setCookie("players", values, 7);
     everyPlayers = values;
     console.log(everyPlayers)
-
 }
 
-// nice
-function cpp() {
-    return everyPlayers;
-}
 
 
 function clickRoleGenerateBTN(){
-    let playersRole = {};
+    playersRole = {};
     let crewmates = [...everyPlayers];
     let impostors = [];
 
@@ -88,9 +90,6 @@ function clickRoleGenerateBTN(){
     // cremwares role 70% for role
     for (var c = 0; c < crewmates.length; c++){
         // if 70%, you get some role
-        console.log(c)
-        console.log(crewmates)
-        console.log(playersRole)
         if (Math.random() < 0.70) {
             whichRole = Math.floor(Math.random() * 4)
             if (whichRole === 0) {
@@ -105,52 +104,8 @@ function clickRoleGenerateBTN(){
         }
     }
 
-    roleUl.innerHTML = ''
-    for (let i = 0; i < everyPlayers.length; i++) {
-        var roleLi = document.createElement("li");
-        if (playersRole[everyPlayers[i]]){
-            roleLi.textContent = everyPlayers[i] + ' - ' + playersRole[everyPlayers[i]];        
-        }else{
-            roleLi.textContent = everyPlayers[i] + ' - ' + "cremwate";
-        }
-        // if you want to show, who you are
-        roleLi.addEventListener("click",(e) => {
-            console.log(e.target.style.color)
-            if (e.target.style.color === ''){
-                e.target.style.color = 'green'
-                yourRoleTitle.textContent = everyPlayers[i] + ', jsi'
-                
-                if (playersRole[everyPlayers[i]]){
-                    yourRoleShow.textContent = playersRole[everyPlayers[i]];
-                    if (playersRole[everyPlayers[i]] === "detektiv"){
-                        yourRoleShow.style.color = "green";
-                    } else if (playersRole[everyPlayers[i]] === "inženýr"){
-                        yourRoleShow.style.color = "gray";
-                    } else if (playersRole[everyPlayers[i]] === "hysterička"){
-                        yourRoleShow.style.color = "#fd627c";
-                    } else if (playersRole[everyPlayers[i]] === "obr") {
-                        yourRoleShow.style.color = "gold";
-                    } else {
-                        yourRoleShow.style.color = "red";
-                    }
-                } else {
-                    yourRoleShow.textContent = 'crewmate';
-                    yourRoleShow.style.color = "#00658d"; 
-                }
-
-                role.style.display = "none";
-                players.style.display = "none";
-                yourRole.style.display = "flex";
-            } else if (e.target.style.color === 'green'){
-                e.target.style.color = 'red'
-            } else if (e.target.style.color === 'red') {
-                e.target.style.color = 'green'
-            }
-        })
-        roleUl.appendChild(roleLi);
-        
-    }
-
+    setCookie("role",JSON.stringify(playersRole),1)
+    setupRole()
     console.log("crewmates:", crewmates);
     console.log("impostors:", impostors);
     console.log(playersRole)
@@ -168,7 +123,51 @@ function clickBackToRole(){
 
 
 
+function setupRole() {
+    roleUl.innerHTML = ''
+    for (let i = 0; i < everyPlayers.length; i++) {
+        var roleLi = document.createElement("li");
+        if (playersRole[everyPlayers[i]]) {
+            roleLi.textContent = everyPlayers[i] + ' - ' + playersRole[everyPlayers[i]];
+        } else {
+            roleLi.textContent = everyPlayers[i] + ' - ' + "cremwate";
+        }
+        // if you want to show, who you are
+        roleLi.addEventListener("click", (e) => {
+            if (e.target.style.color === '') {
+                e.target.style.color = 'green'
+                yourRoleTitle.textContent = everyPlayers[i] + ', jsi'
 
+                if (playersRole[everyPlayers[i]]) {
+                    yourRoleShow.textContent = playersRole[everyPlayers[i]];
+                    if (playersRole[everyPlayers[i]] === "detektiv") {
+                        yourRoleShow.style.color = "green";
+                    } else if (playersRole[everyPlayers[i]] === "inženýr") {
+                        yourRoleShow.style.color = "gray";
+                    } else if (playersRole[everyPlayers[i]] === "hysterička") {
+                        yourRoleShow.style.color = "#fd627c";
+                    } else if (playersRole[everyPlayers[i]] === "obr") {
+                        yourRoleShow.style.color = "gold";
+                    } else {
+                        yourRoleShow.style.color = "red";
+                    }
+                } else {
+                    yourRoleShow.textContent = 'crewmate';
+                    yourRoleShow.style.color = "#00658d";
+                }
+
+                role.style.display = "none";
+                players.style.display = "none";
+                yourRole.style.display = "flex";
+            } else if (e.target.style.color === 'green') {
+                e.target.style.color = 'red'
+            } else if (e.target.style.color === 'red') {
+                e.target.style.color = 'green'
+            }
+        })
+        roleUl.appendChild(roleLi);
+    }
+}
 
 
 // cookies ********************************************************
