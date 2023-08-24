@@ -9,6 +9,8 @@
     text-align: center;
     display: block;
     margin-top: 10px;
+    color: #e79a09;
+    font-weight: 900;
 }
 .roleOrPlayers {
     display: flex;
@@ -35,11 +37,26 @@ main {
 }
 #roleUl {
     color: white;
+    list-style: none;
 }
 #roleUl li {
-    margin-top: 5px;
+    margin-top: 8px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
+.roleBTN {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    transition: 300ms;
+}
+.roleBTN:hover {
+    background: #a80d0d;
+}
 /* your role */
 #yourRole {
     flex-direction: column;
