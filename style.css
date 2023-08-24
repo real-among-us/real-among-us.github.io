@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+.roleOrPlayersTitle {
+    color: #fff;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+}
+.roleOrPlayers {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+}
+main {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(#4e0000, #000);
+}
+.playersChangeBTN {
+    width: 100px;
+    height: 50px;
+}
+/* role */
+#role {
+    background: rgb(32, 32, 32);
+    margin: 5px 15px 0;
+    border-radius: 10px;
+    padding: 5px;
+}
+#roleUl {
+    color: white;
+}
+#roleUl li {
+    margin-top: 5px;
+}
+
+/* your role */
+#yourRole {
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    background-color: #ffdfdf;
+    margin: 5px 5px 0;
+    border-radius: 5px;
+    padding: 10px;
+}
+#yourRoleTitle {
+    letter-spacing: 4cap;
+    word-spacing: 10px;
+}
+#yourRoleShow {
+    font-size: 50px;
+}
+
+#backToRole {
+    margin-top: 150px;
+    background: red;
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px;
+    transition: 300ms;
+    
+}
+#backToRole:hover {
+    background: #e79a09;
+    
+}
