@@ -122,8 +122,20 @@ function clickRoleGenerateBTN(){
                 
                 if (playersRole[everyPlayers[i]]){
                     yourRoleShow.textContent = playersRole[everyPlayers[i]];
+                    if (playersRole[everyPlayers[i]] === "detektiv"){
+                        yourRoleShow.style.color = "green";
+                    } else if (playersRole[everyPlayers[i]] === "inženýr"){
+                        yourRoleShow.style.color = "gray";
+                    } else if (playersRole[everyPlayers[i]] === "hysterička"){
+                        yourRoleShow.style.color = "#fd627c";
+                    } else if (playersRole[everyPlayers[i]] === "obr") {
+                        yourRoleShow.style.color = "gold";
+                    } else {
+                        yourRoleShow.style.color = "red";
+                    }
                 } else {
                     yourRoleShow.textContent = 'crewmate';
+                    yourRoleShow.style.color = "#00658d"; 
                 }
 
                 role.style.display = "none";

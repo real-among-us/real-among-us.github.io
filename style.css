@@ -30,7 +30,7 @@ main {
 }
 /* role */
 #role {
-    background: rgb(32, 32, 32);
+    background: #202020;
     margin: 5px 15px 0;
     border-radius: 10px;
     padding: 5px;
@@ -57,6 +57,28 @@ main {
 .roleBTN:hover {
     background: #a80d0d;
 }
+/* players */
+#players {
+    background: #202020;
+    margin: 5px 15px 0;
+}
+#playersContainer {
+    display: flex;
+    flex-direction: column;
+}
+#playersContainer input {
+    margin: 3px 0 3px;
+    padding: 10px;
+    border-radius: 15px;
+}
+.playersBTN {
+    margin: 10px 0 10px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #a80d0d;
+    color: white;
+    font-weight: bold;
+}
 /* your role */
 #yourRole {
     flex-direction: column;
@@ -64,12 +86,12 @@ main {
     flex-wrap: wrap;
     text-align: center;
     background-color: #ffdfdf;
-    margin: 5px 5px 0;
+    margin: 5px 15px 0;
     border-radius: 5px;
     padding: 10px;
 }
 #yourRoleTitle {
-    letter-spacing: 4cap;
+    letter-spacing: 4px;
     word-spacing: 10px;
 }
 #yourRoleShow {
