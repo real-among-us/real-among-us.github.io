@@ -130,7 +130,7 @@ function setupRole() {
         if (playersRole[everyPlayers[i]]) {
             roleLi.textContent = everyPlayers[i] + ' - ' + playersRole[everyPlayers[i]];
         } else {
-            roleLi.textContent = everyPlayers[i] + ' - ' + "cremwate";
+            roleLi.textContent = everyPlayers[i] + ' - ' + "crewmate";
         }
         // if you want to show, who you are
         roleLi.addEventListener("click", (e) => {
